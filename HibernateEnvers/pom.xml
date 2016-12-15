@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.envers</groupId>
+	<artifactId>HibernateEnvers</artifactId>
+	<name>HibernateEnvers</name>
+	<packaging>war</packaging>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
+	<properties>
+		<java-version>1.8</java-version>
+		<junit-version>4.12</junit-version>
+		<spring-version>4.1.6.RELEASE</spring-version>
+		<hibernate-version>4.3.10.Final</hibernate-version>
+		<mysql-version>5.1.30</mysql-version>
+		<maven-compiler-version>3.3</maven-compiler-version>
+		<spring-security-version>4.0.1.RELEASE</spring-security-version>
+		<spring-ldap-version>2.0.3.RELEASE</spring-ldap-version>
+		<aspect.version>1.8.9</aspect.version>
+	</properties>
+	
+	<dependencies>
+		<!-- JUNIT -->
+		<dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>${junit-version}</version>
+	      <scope>test</scope>
+	    </dependency>
+    
+		<!-- Spring -->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-core</artifactId>
+		  <version>${spring-version}</version>
+		</dependency>
+		
+		<!--
+	    Application Context (depends on spring-core, spring-expression, spring-aop, spring-beans)
+	    This is the central artifact for Spring's Dependency Injection Container and is generally always defined
+		-->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-context</artifactId>
+		  <version>${spring-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+
+		<!--
+		    Aspect Oriented Programming (AOP) Framework (depends on spring-core, spring-beans)
+		    Define this if you use Spring AOP APIs (org.springframework.aop.*)
+		-->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-aop</artifactId>
+		  <version>${spring-version}</version>
+		</dependency>
+		
+		<!-- Spring Test -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${spring-version}</version>
+		</dependency>
+		
+		<!-- Spring-web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		
+		<!--
+	    Bean Factory and JavaBeans utilities (depends on spring-core)
+	    Define this if you use Spring Bean APIs (org.springframework.beans.*)
+		-->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-beans</artifactId>
+		  <version>${spring-version}</version>
+		</dependency>
+		
+		<!--
+	    Transaction Management Abstraction (depends on spring-core, spring-beans, spring-aop, spring-context)
+	    Define this if you use Spring Transactions or DAO Exception Hierarchy
+	    (org.springframework.transaction.*/org.springframework.dao.*)
+		-->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-tx</artifactId>
+		  <version>${spring-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.ldap</groupId>
+		    <artifactId>spring-ldap-core</artifactId>
+		    <version>${spring-ldap-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>${spring-security-version}</version>
+		</dependency>
+	
+	
+		<!--
+		    JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, spring-tx)
+		    Define this if you use Spring's JdbcTemplate API (org.springframework.jdbc.*)
+		-->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-jdbc</artifactId>
+		  <version>${spring-version}</version>
+		</dependency>
+	 
+		<!--
+		    Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA, and iBatis.
+		    (depends on spring-core, spring-beans, spring-context, spring-tx)
+		    Define this if you need ORM (org.springframework.orm.*)
+		-->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-orm</artifactId>
+		  <version>${spring-version}</version>
+		</dependency>
+	
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<dependency>  <groupId>org.hibernate</groupId> 
+		  <artifactId>hibernate-envers</artifactId> 
+		  <version>${hibernate-version}</version>
+		</dependency>
+		<!--  In memory db config -->
+		<dependency>
+	  		<groupId>org.hsqldb</groupId>
+	  		<artifactId>hsqldb</artifactId>
+	  		<version>2.3.3</version>
+	  	</dependency>
+				
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>		
+		</dependency>
+		
+		<dependency>
+			<groupId>net.bull.javamelody</groupId>
+			<artifactId>javamelody-core</artifactId>
+			<version>1.60.0</version>
+		</dependency>
+	
+		<!-- Apache Database Connection Pool -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.0</version>
+		</dependency>
+  	
+  		<!-- <dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency> -->
+		
+		<!-- MySQL JDBC Driver -->
+		<dependency>
+	    	<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		<version>${mysql-version}</version>		
+		</dependency> 
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspect.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspect.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+	 
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>  
+	       <groupId>log4j</groupId>  
+	       <artifactId>log4j</artifactId>  
+	       <version>1.2.15</version>  
+	       <exclusions>  
+	         <exclusion>  
+	           <groupId>javax.mail</groupId>  
+	           <artifactId>mail</artifactId>  
+	         </exclusion>  
+	         <exclusion>  
+	           <groupId>javax.jms</groupId>  
+	           <artifactId>jms</artifactId>  
+	         </exclusion>  
+	         <exclusion>  
+	           <groupId>com.sun.jdmk</groupId>  
+	           <artifactId>jmxtools</artifactId>  
+	         </exclusion>  
+	         <exclusion>  
+	           <groupId>com.sun.jmx</groupId>  
+	           <artifactId>jmxri</artifactId>  
+	         </exclusion>  
+	       </exclusions>  
+	       <scope>runtime</scope>  
+	     </dependency>  
+	</dependencies>
+    <build>
+    	<pluginManagement>
+	        <plugins>
+		        <plugin>
+			        <artifactId>maven-war-plugin</artifactId>
+			        <version>2.4</version>
+			        <configuration>
+			          <warSourceDirectory>WebContent</warSourceDirectory>
+			          <failOnMissingWebXml>false</failOnMissingWebXml>
+			        </configuration>
+			    </plugin>
+	            <plugin>
+	                <artifactId>maven-eclipse-plugin</artifactId>
+	                <version>2.9</version>
+	                <configuration>
+	                    <additionalProjectnatures>
+	                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+	                    </additionalProjectnatures>
+	                    <additionalBuildcommands>
+	                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+	                    </additionalBuildcommands>
+	                    <downloadSources>true</downloadSources>
+	                    <downloadJavadocs>true</downloadJavadocs>
+	                </configuration>
+	            </plugin>
+	            <plugin>
+	            	<groupId>org.apache.maven.plugins</groupId>
+			        <artifactId>maven-compiler-plugin</artifactId>
+			        <version>${maven-compiler-version}</version>
+			        <configuration>
+			          <source>${java-version}</source>
+			          <target>${java-version}</target>
+			          <compilerArgument>-Xlint:all</compilerArgument>
+	                  <showWarnings>true</showWarnings>
+	                  <showDeprecation>true</showDeprecation>
+			        </configuration>
+			    </plugin>
+	            <plugin>
+	                <groupId>org.codehaus.mojo</groupId>
+	                <artifactId>exec-maven-plugin</artifactId>
+	                <version>1.2.1</version>
+	                <configuration>
+	                    <mainClass>org.test.int1.Main</mainClass>
+	                </configuration>
+	            </plugin>
+	        </plugins>
+	     </pluginManagement>
+    </build>
+</project>

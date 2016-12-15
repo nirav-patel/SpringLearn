@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+	<aop:aspectj-autoproxy expose-proxy="true" />
+	
+	<aop:config>
+		<aop:advisor advice-ref="monitoringAdvice" pointcut-ref="monitoringPointcut" />
+	</aop:config>
+
+	<bean id="monitoringAdvice" class="net.bull.javamelody.MonitoringSpringInterceptor" />
+	<bean id="monitoringPointcut" class="net.bull.javamelody.MonitoredWithAnnotationPointcut" />
+
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+
+	<bean id="springDataSourceBeanPostProcessor" class="net.bull.javamelody.SpringDataSourceBeanPostProcessor" />
+	<bean id="wrappedDataSource" class="net.bull.javamelody.SpringDataSourceFactoryBean">
+		<property name="targetName" value="dataSource" />
+	</bean>
+</beans>
